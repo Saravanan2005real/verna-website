@@ -26,14 +26,6 @@ const teamMembers = [
     bio: "Spearheading our technical operations, Mr. Saravanan guarantees the delivery of robust, scalable, and high-performance technological solutions tailored to solve complex business challenges.",
   },
   {
-    name: "Ms. Divyaa .S",
-    role: "Business Operations Manager",
-    initials: "DS",
-    photo: "/team/divyaa.png",
-    linkedin: "https://www.linkedin.com/in/divyaa-sivakumar-05012006d/",
-    bio: "Ms. Divyaa ensures flawless execution and seamless communication across all client projects. She orchestrates our teams to deliver exceptional quality, strictly on time and within scope.",
-  },
-  {
     name: "Dr. Sreekumar .S",
     role: "Strategic Advisor",
     photo: "/team/sreekumar.png",
@@ -80,7 +72,7 @@ export default function TeamPageClient() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, delay: i * 0.15, ease: "easeOut" }}
-              className="flex flex-col group w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm"
+              className="flex flex-col group w-full md:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] max-w-sm"
             >
               {/* Professional Corporate Portrait Box */}
               <div className="w-full aspect-square rounded-xl bg-slate-100 mb-6 relative overflow-hidden shadow-sm border border-slate-200 transition-all duration-500 group-hover:shadow-lg group-hover:-translate-y-1">
