@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Colors */
+  --color-primary: #1A4E95;
+  --color-primary-dark: #133a6f;
+  --color-primary-light: #2a6bb8;
+  --color-accent: #2397B8;
+  --color-accent-light: #2eb5d4;
+  --color-accent-muted: rgba(35, 151, 184, 0.12);
+  --color-off-white: #F8FAFC;
+
+  /* Animations */
+  --animate-gradient: gradient 8s linear infinite;
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Fonts */
+  --font-heading: var(--font-heading);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+
+  /* Shadows for light mode */
+  --shadow-sm: 0 2px 8px rgba(26, 78, 149, 0.06);
+  --shadow-md: 0 8px 24px rgba(26, 78, 149, 0.1);
+  --shadow-lg: 0 20px 48px rgba(26, 78, 149, 0.12);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  
+  body {
+    @apply font-body text-slate-800 text-base leading-relaxed bg-slate-50;
+    min-width: 280px;
+  }
+  
+  /* Subtle light tech grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(rgba(26, 78, 149, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 78, 149, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+}
+
+.bg-300-percent { background-size: 300% 300%; }
