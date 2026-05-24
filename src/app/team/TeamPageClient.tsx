@@ -85,7 +85,7 @@ export default function TeamPageClient() {
                 )}
               </div>
               
-              <h3 className="font-heading text-2xl font-bold text-slate-900 mb-1">{member.name}</h3>
+              <h3 className={`font-heading font-bold text-slate-900 mb-1 whitespace-nowrap tracking-tight ${member.name.length > 20 ? 'text-lg xl:text-xl' : 'text-xl xl:text-2xl'}`}>{member.name}</h3>
               <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-4">{member.role}</p>
               <p className="text-sm text-slate-600 font-light leading-relaxed mb-6 flex-1">
                 {member.bio}
