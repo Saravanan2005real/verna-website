@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Trophy, Users, ChevronRight, CheckCircle2, Code, Zap, Globe, Rocket, Plus, Trash2, Upload, QrCode, CreditCard } from "lucide-react";
+import { Calendar, Trophy, Users, ChevronRight, CheckCircle2, Code, Zap, Globe, Rocket, Plus, Trash2, Upload, QrCode, CreditCard, Lightbulb, Cpu, Network, GraduationCap, Building2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Member = {
@@ -62,10 +62,53 @@ export default function BuildXClient() {
     }
   };
 
+  const scrollToRegister = () => {
+    const element = document.getElementById("register-section");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!teamName.trim()) {
+      alert("Validation Error: Please enter your Team Name.");
+      return;
+    }
+
+    for (let i = 0; i < members.length; i++) {
+      const member = members[i];
+      const memberRole = i === 0 ? "Team Leader" : `Teammate ${i + 1}`;
+      
+      if (!member.fullName.trim()) {
+        alert(`Validation Error: Please enter the Full Name for the ${memberRole}.`);
+        return;
+      }
+      if (!member.email.trim()) {
+        alert(`Validation Error: Please enter the Email Address for the ${memberRole}.`);
+        return;
+      }
+      if (!member.phone.trim()) {
+        alert(`Validation Error: Please enter the Phone Number for the ${memberRole}.`);
+        return;
+      }
+      if (!member.college.trim()) {
+        alert(`Validation Error: Please enter the College Name for the ${memberRole}.`);
+        return;
+      }
+      if (!member.department.trim()) {
+        alert(`Validation Error: Please enter the Department for the ${memberRole}.`);
+        return;
+      }
+      if (!member.year) {
+        alert(`Validation Error: Please select the Current Year for the ${memberRole}.`);
+        return;
+      }
+    }
+
     if (!screenshot) {
-      alert("Please upload the payment screenshot.");
+      alert("Validation Error: Please upload the payment screenshot image (photo) of your transaction.");
       return;
     }
 
@@ -152,7 +195,7 @@ export default function BuildXClient() {
           >
             <div className="flex items-center gap-2 text-slate-300 bg-white/5 px-4 py-2 rounded-lg border border-white/10 backdrop-blur-sm">
               <Calendar className="text-accent" size={20} />
-              <span>20-21 June 2026</span>
+              <span>27-28 June 2026</span>
             </div>
             <div className="flex items-center gap-2 text-slate-300 bg-white/5 px-4 py-2 rounded-lg border border-white/10 backdrop-blur-sm">
               <Users className="text-accent" size={20} />
@@ -162,6 +205,22 @@ export default function BuildXClient() {
               <Globe className="text-accent" size={20} />
               <span>Registration Fee: ₹199/Team</span>
             </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="mt-10 flex justify-center"
+          >
+            <button
+              type="button"
+              onClick={scrollToRegister}
+              className="group relative inline-flex items-center gap-2 px-8 py-4 font-bold text-white text-lg bg-gradient-to-r from-primary to-accent rounded-full overflow-hidden shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95 cursor-pointer z-10"
+            >
+              <span>Register Now</span>
+              <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </button>
           </motion.div>
         </div>
 
@@ -202,6 +261,124 @@ export default function BuildXClient() {
           </div>
         </div>
 
+        {/* Hackathon Rounds Section */}
+        <div className="mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl font-bold mb-4">Hackathon Structure & Rounds</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              Follow the journey from a spark of inspiration to a fully-realized business-ready solution.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
+            {/* Connection Line (Desktop) */}
+            <div className="hidden lg:block absolute top-1/2 left-4 right-4 h-0.5 bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 -translate-y-1/2 z-0" />
+
+            {[
+              {
+                round: "Round 1",
+                title: "Idea Pitching & Presentation",
+                desc: "Establish your core concept, define the problem statement, and pitch your innovative solution with an interactive slide presentation.",
+                icon: Lightbulb,
+                color: "from-amber-500/20 to-yellow-500/20",
+                iconColor: "text-amber-400",
+                badge: "Initial Screening",
+              },
+              {
+                round: "Round 2",
+                title: "Prototype & Tech Evaluation",
+                desc: "Present your system architecture, technical design, chosen tech stack, and showcase your partially completed project prototype.",
+                icon: Cpu,
+                color: "from-blue-500/20 to-cyan-500/20",
+                iconColor: "text-cyan-400",
+                badge: "Implementation Review",
+              },
+              {
+                round: "Round 3",
+                title: "Final Demo & Business Pitch",
+                desc: "Demonstrate your finalized working project, present your target business model, monetization strategy, and pitch to potential sponsors.",
+                icon: Trophy,
+                color: "from-emerald-500/20 to-teal-500/20",
+                iconColor: "text-emerald-400",
+                badge: "Grand Finale",
+              },
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 + idx * 0.15 }}
+                className="relative z-10 flex flex-col p-8 rounded-3xl bg-slate-900/40 border border-white/5 hover:border-primary/20 transition-all hover:bg-slate-900/60 group shadow-lg backdrop-blur-sm"
+              >
+                <div className="absolute top-4 right-4 text-xs font-semibold px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400">
+                  {item.badge}
+                </div>
+                
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-6 border border-white/10 group-hover:scale-110 transition-transform`}>
+                  <item.icon className={item.iconColor} size={28} />
+                </div>
+
+                <span className="text-xs uppercase tracking-widest font-bold text-accent mb-2">{item.round}</span>
+                <h3 className="text-xl font-bold text-white mb-4 group-hover:text-primary-light transition-colors">{item.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed flex-grow">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Jury Panel & Networking Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-24 relative rounded-3xl overflow-hidden border border-white/5 bg-slate-900/30 p-8 md:p-12 backdrop-blur-sm max-w-4xl mx-auto"
+        >
+          {/* Subtle glow background */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+
+          <div className="relative z-10 space-y-8 text-center max-w-3xl mx-auto">
+            <div className="flex flex-col items-center space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent-light text-sm font-semibold">
+                <Network size={16} />
+                <span>Expert Panels</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                Distinguished Academic & Industry Jury
+              </h2>
+              <p className="text-slate-300 leading-relaxed text-lg max-w-2xl">
+                Your projects will be evaluated by recognized experts representing both top tier academic institutions and leading technology companies.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 flex items-start gap-4 hover:border-primary/20 transition-all hover:bg-slate-900/40">
+                <div className="p-3 rounded-xl bg-primary/20 text-primary-light shrink-0">
+                  <GraduationCap size={24} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-white text-lg mb-1">Academic Wisdom</h4>
+                  <p className="text-sm text-slate-400 leading-relaxed">Receive constructive suggestions on research methodologies, algorithmic rigor, and foundational theories.</p>
+                </div>
+              </div>
+              
+              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 flex items-start gap-4 hover:border-primary/20 transition-all hover:bg-slate-900/40">
+                <div className="p-3 rounded-xl bg-accent/20 text-accent-light shrink-0">
+                  <Building2 size={24} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-white text-lg mb-1">Industry Standards</h4>
+                  <p className="text-sm text-slate-400 leading-relaxed">Get insights on real-world product deployment, scalability patterns, code efficiency, and business viability.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Why Participate (Full Width Above Form) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -232,6 +409,7 @@ export default function BuildXClient() {
 
         {/* Main Registration Flow */}
         <motion.div
+          id="register-section"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
@@ -264,7 +442,7 @@ export default function BuildXClient() {
                       <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-4">
                         <div className="space-y-2">
                           <label className="text-sm text-slate-300 font-medium">Team Name *</label>
-                          <input required type="text" value={teamName} onChange={(e) => setTeamName(e.target.value)} className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-600" placeholder="E.g., The Tech Titans" />
+                          <input type="text" value={teamName} onChange={(e) => setTeamName(e.target.value)} className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-600" placeholder="E.g., The Tech Titans" />
                         </div>
                       </div>
                     </div>
@@ -299,27 +477,27 @@ export default function BuildXClient() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                               <div className="space-y-1">
                                 <label className="text-xs text-slate-400 uppercase tracking-wider">Full Name *</label>
-                                <input required type="text" name="fullName" value={member.fullName} onChange={(e) => handleMemberChange(idx, e)} className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="John Doe" />
+                                <input type="text" name="fullName" value={member.fullName} onChange={(e) => handleMemberChange(idx, e)} className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="John Doe" />
                               </div>
                               <div className="space-y-1">
                                 <label className="text-xs text-slate-400 uppercase tracking-wider">Email Address *</label>
-                                <input required type="email" name="email" value={member.email} onChange={(e) => handleMemberChange(idx, e)} className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="john@example.com" />
+                                <input type="email" name="email" value={member.email} onChange={(e) => handleMemberChange(idx, e)} className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="john@example.com" />
                               </div>
                               <div className="space-y-1">
                                 <label className="text-xs text-slate-400 uppercase tracking-wider">Phone Number *</label>
-                                <input required type="tel" name="phone" value={member.phone} onChange={(e) => handleMemberChange(idx, e)} className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="+91 9876543210" />
+                                <input type="tel" name="phone" value={member.phone} onChange={(e) => handleMemberChange(idx, e)} className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="+91 9876543210" />
                               </div>
                               <div className="space-y-1">
                                 <label className="text-xs text-slate-400 uppercase tracking-wider">College Name *</label>
-                                <input required type="text" name="college" value={member.college} onChange={(e) => handleMemberChange(idx, e)} className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="University of Tech" />
+                                <input type="text" name="college" value={member.college} onChange={(e) => handleMemberChange(idx, e)} className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="University of Tech" />
                               </div>
                               <div className="space-y-1">
                                 <label className="text-xs text-slate-400 uppercase tracking-wider">Department *</label>
-                                <input required type="text" name="department" value={member.department} onChange={(e) => handleMemberChange(idx, e)} className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="Computer Science" />
+                                <input type="text" name="department" value={member.department} onChange={(e) => handleMemberChange(idx, e)} className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="Computer Science" />
                               </div>
                               <div className="space-y-1">
                                 <label className="text-xs text-slate-400 uppercase tracking-wider">Current Year *</label>
-                                <select required name="year" value={member.year} onChange={(e) => handleMemberChange(idx, e)} className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50 appearance-none [&>option]:bg-slate-900">
+                                <select name="year" value={member.year} onChange={(e) => handleMemberChange(idx, e)} className="w-full bg-slate-950/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50 appearance-none [&>option]:bg-slate-900">
                                   <option value="" disabled>Select Year</option>
                                   <option value="1">1st Year</option>
                                   <option value="2">2nd Year</option>
@@ -379,7 +557,7 @@ export default function BuildXClient() {
                       <div className="space-y-2 mt-4">
                         <label className="text-sm text-slate-300 font-medium">Upload Payment Screenshot *</label>
                         <div className="relative">
-                          <input required type="file" accept="image/*" onChange={handleFileChange} className="hidden" id="screenshot-upload" />
+                          <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" id="screenshot-upload" />
                           <label 
                             htmlFor="screenshot-upload"
                             className={cn(
