@@ -86,67 +86,65 @@ export async function POST(request: Request) {
 
       // 3. Send Confirmation Email via Resend
       if (resend) {
-        const recipientEmails: string[] = members
-          .map((m: any) => m.email?.trim())
-          .filter((email: string) => email && email.length > 0);
+        // Send email individually to each teammate
+        for (let i = 0; i < members.length; i++) {
+          const member = members[i];
+          const email = member.email?.trim();
+          const fullName = member.fullName?.trim();
+          
+          if (email && email.length > 0) {
+            try {
+              await resend.emails.send({
+                from: 'BuildX Hackathon <onboarding@resend.dev>',
+                to: [email],
+                subject: `Registration Confirmed: ${teamName} — BuildX 2026`,
+                html: `
+                  <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 25px; color: #1e293b; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px;">
+                    <div style="text-align: center; margin-bottom: 25px;">
+                      <h1 style="color: #1A4E95; font-size: 28px; margin: 0 0 10px 0;">BuildX Hackathon 2026</h1>
+                      <p style="color: #64748b; font-size: 16px; margin: 0;">Registration Confirmed</p>
+                    </div>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin-bottom: 25px;" />
+                    
+                    <p style="font-size: 16px; line-height: 1.6; margin-bottom: 20px;">Hi <strong>${fullName}</strong>,</p>
+                    <p style="font-size: 16px; line-height: 1.6; margin-bottom: 20px;">Thanks for registering for the <strong>BuildX Hackathon 2026</strong>! Your registration is confirmed under the team name <strong>${teamName}</strong> (Team Size: ${members.length} members). We will update you with more details soon.</p>
+                    
+                    <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 12px; margin-bottom: 25px;">
+                      <h3 style="color: #2397B8; font-size: 18px; margin-top: 0; margin-bottom: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">Event Date</h3>
+                      <p style="margin: 0; font-size: 15px; color: #0f172a;"><strong>June 27 & 28, 2026</strong></p>
+                    </div>
 
-        if (recipientEmails.length > 0) {
-          try {
-            await resend.emails.send({
-              from: 'BuildX Hackathon <onboarding@resend.dev>',
-              to: recipientEmails,
-              subject: `Registration Confirmed: Team ${teamName} — BuildX 2026`,
-              html: `
-                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 25px; color: #1e293b; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px;">
-                  <div style="text-align: center; margin-bottom: 25px;">
-                    <h1 style="color: #1A4E95; font-size: 28px; margin: 0 0 10px 0;">BuildX Hackathon 2026</h1>
-                    <p style="color: #64748b; font-size: 16px; margin: 0;">Registration Success Confirmation</p>
-                  </div>
-                  
-                  <hr style="border: 0; border-top: 1px solid #e2e8f0; margin-bottom: 25px;" />
-                  
-                  <p style="font-size: 16px; line-height: 1.6; margin-bottom: 20px;">Hi Team,</p>
-                  <p style="font-size: 16px; line-height: 1.6; margin-bottom: 20px;">Congratulations! Your team <strong>${teamName}</strong> has been successfully registered for the <strong>BuildX Hackathon 2026</strong>.</p>
-                  
-                  <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 12px; margin-bottom: 25px;">
-                    <h3 style="color: #2397B8; font-size: 18px; margin-top: 0; margin-bottom: 15px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">Registration Details</h3>
-                    <ul style="margin: 0; padding-left: 20px; font-size: 15px; line-height: 1.8;">
-                      <li><strong>Event Dates:</strong> June 27 & 28, 2026</li>
-                      <li><strong>Team Name:</strong> ${teamName}</li>
-                      <li><strong>Team Size:</strong> ${members.length} members</li>
-                    </ul>
-                  </div>
+                    <div style="margin-bottom: 25px;">
+                      <h3 style="color: #1A4E95; font-size: 18px; margin-top: 0; margin-bottom: 12px;">Follow Us on Social Media</h3>
+                      <p style="font-size: 14px; color: #64748b; margin-bottom: 12px;">Stay connected and follow our social handles for real-time announcements and updates:</p>
+                      <div style="margin-top: 10px;">
+                        <a href="https://www.linkedin.com/company/vernatech/" target="_blank" style="color: #0077b5; text-decoration: none; font-size: 14px; font-weight: bold; margin-right: 15px;">LinkedIn</a>
+                        <a href="https://www.instagram.com/vernatech_llp?igsh=Y2wyazB6bTMzOWx0" target="_blank" style="color: #E1306C; text-decoration: none; font-size: 14px; font-weight: bold; margin-right: 15px;">Instagram</a>
+                        <a href="https://wa.me/918220012671" target="_blank" style="color: #25D366; text-decoration: none; font-size: 14px; font-weight: bold;">WhatsApp</a>
+                      </div>
+                    </div>
 
-                  <h3 style="color: #1A4E95; font-size: 18px; margin-top: 0; margin-bottom: 12px;">Hackathon Structure & Rounds</h3>
-                  <div style="border-left: 4px solid #1A4E95; padding-left: 15px; margin-bottom: 15px;">
-                    <strong style="display: block; font-size: 15px; color: #0f172a;">Round 1: Idea Pitching & Presentation</strong>
-                    <span style="font-size: 14px; color: #64748b;">Pitch your core concept, define the problem statement, and validate the idea.</span>
-                  </div>
-                  <div style="border-left: 4px solid #2397B8; padding-left: 15px; margin-bottom: 15px;">
-                    <strong style="display: block; font-size: 15px; color: #0f172a;">Round 2: Prototype & Tech Evaluation</strong>
-                    <span style="font-size: 14px; color: #64748b;">Showcase your system architecture, technical design, and a partially completed prototype.</span>
-                  </div>
-                  <div style="border-left: 4px solid #10b981; padding-left: 15px; margin-bottom: 20px;">
-                    <strong style="display: block; font-size: 15px; color: #0f172a;">Round 3: Final Demo & Business Pitch</strong>
-                    <span style="font-size: 14px; color: #64748b;">Present your finalized working prototype, business monetization model, and market viability.</span>
-                  </div>
+                    <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 12px; margin-bottom: 25px;">
+                      <h3 style="color: #2397B8; font-size: 18px; margin-top: 0; margin-bottom: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">Contact List</h3>
+                      <ul style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.8; color: #475569;">
+                        <li><strong>Support Email:</strong> <a href="mailto:support@vernatech.co" style="color: #1A4E95; text-decoration: none;">support@vernatech.co</a></li>
+                        <li><strong>Phone Support:</strong> +91 8220012671</li>
+                      </ul>
+                    </div>
 
-                  <p style="font-size: 15px; line-height: 1.6; color: #475569; margin-bottom: 25px;">
-                    We have successfully received your payment transaction screenshot. Our team will verify the payment and follow up with track selections, official Discord invitations, and rule guidelines as we approach the hackathon.
-                  </p>
-
-                  <hr style="border: 0; border-top: 1px solid #e2e8f0; margin-bottom: 25px;" />
-                  
-                  <div style="text-align: center; font-size: 14px; color: #94a3b8;">
-                    <p style="margin: 0 0 5px 0;">BuildX Hackathon by VernaTech LLP</p>
-                    <p style="margin: 0;">If you have any questions, please contact support.</p>
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin-bottom: 25px;" />
+                    
+                    <div style="text-align: center; font-size: 14px; color: #94a3b8;">
+                      <p style="margin: 0 0 5px 0;">BuildX Hackathon by VernaTech LLP</p>
+                    </div>
                   </div>
-                </div>
-              `
-            });
-            console.log("Confirmation emails successfully dispatched via Resend to:", recipientEmails);
-          } catch (resendError) {
-            console.error("Resend API failed to dispatch emails:", resendError);
+                `
+              });
+              console.log(`Confirmation email sent successfully via Resend to: ${email} (${fullName})`);
+            } catch (resendError) {
+              console.error(`Resend API failed to send to ${email}:`, resendError);
+            }
           }
         }
       }
