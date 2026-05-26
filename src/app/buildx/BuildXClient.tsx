@@ -30,10 +30,34 @@ export default function BuildXClient() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  
   // Use an effect to set mounted state, ensuring the component only renders on the client
   // This completely prevents browser-extension hydration mismatch errors on forms!
   useEffect(() => {
     setIsMounted(true);
+
+    const targetDate = new Date("2026-06-27T09:00:00+05:30"); // Target date: June 27, 2026 at 9:00 AM IST
+
+    const calculateTimeLeft = () => {
+      const difference = +targetDate - +new Date();
+      let newTimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+
+      if (difference > 0) {
+        newTimeLeft = {
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        };
+      }
+      setTimeLeft(newTimeLeft);
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+
+    return () => clearInterval(timer);
   }, []);
 
   if (!isMounted) return null;
@@ -186,6 +210,47 @@ export default function BuildXClient() {
           >
             Turning Ideas Into Impactful Solutions
           </motion.p>
+
+          {/* Countdown Timer */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="max-w-xl mx-auto mb-12 p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden"
+          >
+            {/* Inner glowing effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 opacity-30 pointer-events-none" />
+            
+            <div className="relative z-10 flex justify-center items-center gap-4 md:gap-8">
+              <div className="text-center">
+                <span className="block text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400 tabular-nums">
+                  {String(timeLeft.days).padStart(2, "0")}
+                </span>
+                <span className="text-xs uppercase tracking-wider text-accent font-semibold">Days</span>
+              </div>
+              <span className="text-2xl md:text-3xl font-bold text-slate-600 animate-pulse">:</span>
+              <div className="text-center">
+                <span className="block text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400 tabular-nums">
+                  {String(timeLeft.hours).padStart(2, "0")}
+                </span>
+                <span className="text-xs uppercase tracking-wider text-accent font-semibold">Hours</span>
+              </div>
+              <span className="text-2xl md:text-3xl font-bold text-slate-600 animate-pulse">:</span>
+              <div className="text-center">
+                <span className="block text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400 tabular-nums">
+                  {String(timeLeft.minutes).padStart(2, "0")}
+                </span>
+                <span className="text-xs uppercase tracking-wider text-accent font-semibold">Minutes</span>
+              </div>
+              <span className="text-2xl md:text-3xl font-bold text-slate-600 animate-pulse">:</span>
+              <div className="text-center">
+                <span className="block text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-primary-light to-accent-light tabular-nums animate-pulse">
+                  {String(timeLeft.seconds).padStart(2, "0")}
+                </span>
+                <span className="text-xs uppercase tracking-wider text-accent font-semibold font-body">Seconds</span>
+              </div>
+            </div>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
