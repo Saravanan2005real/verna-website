@@ -11,6 +11,7 @@ const navLinks = [
   { name: "Services", href: "/#services" },
   { name: "About Us", href: "/#about" },
   { name: "Our Team", href: "/team" },
+  { name: "BuildX", href: "/buildx" },
 ];
 
 export default function Header() {

@@ -127,7 +127,7 @@ export default function Footer() {
               <li>
                 <motion.a 
                   whileHover={{ x: 5 }}
-                  href="mailto:vernatechofficial@gmail.com" 
+                  href="mailto:support@vernatech.co" 
                   className="flex items-start gap-4 group hover:text-white transition-colors"
                 >
                   <div className="w-10 h-10 rounded-full bg-primary border border-primary-light flex items-center justify-center shrink-0 group-hover:border-accent group-hover:text-accent group-hover:bg-primary-dark transition-all">
@@ -135,7 +135,7 @@ export default function Footer() {
                   </div>
                   <div className="flex flex-col pt-1">
                     <span className="text-xs uppercase tracking-widest text-blue-300 mb-1 font-semibold">Email</span>
-                    <span className="break-all font-medium">vernatechofficial@gmail.com</span>
+                    <span className="break-all font-medium">support@vernatech.co</span>
                   </div>
                 </motion.a>
               </li>

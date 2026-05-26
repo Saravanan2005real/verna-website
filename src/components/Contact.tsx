@@ -61,8 +61,8 @@ export default function Contact() {
               </motion.div>
               <div>
                 <span className="block text-sm font-semibold text-slate-500 uppercase tracking-widest mb-1">Email Us</span>
-                <a href="mailto:vernatechofficial@gmail.com" className="text-lg sm:text-xl font-medium text-slate-800 hover:text-primary transition-colors break-all">
-                  vernatechofficial@gmail.com
+                <a href="mailto:support@vernatech.co" className="text-lg sm:text-xl font-medium text-slate-800 hover:text-primary transition-colors break-all">
+                  support@vernatech.co
                 </a>
               </div>
             </motion.div>
