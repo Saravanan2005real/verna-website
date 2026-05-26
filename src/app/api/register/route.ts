@@ -94,7 +94,7 @@ export async function POST(request: Request) {
           
           if (email && email.length > 0) {
             try {
-              await resend.emails.send({
+              const response = await resend.emails.send({
                 from: 'BuildX Hackathon <onboarding@resend.dev>',
                 to: [email],
                 subject: `Registration Confirmed: ${teamName} — BuildX 2026`,
@@ -141,7 +141,12 @@ export async function POST(request: Request) {
                   </div>
                 `
               });
-              console.log(`Confirmation email sent successfully via Resend to: ${email} (${fullName})`);
+
+              if (response.error) {
+                console.error(`Resend API returned error for ${email}:`, response.error);
+              } else {
+                console.log(`Confirmation email sent successfully via Resend to: ${email} (${fullName})`);
+              }
             } catch (resendError) {
               console.error(`Resend API failed to send to ${email}:`, resendError);
             }
