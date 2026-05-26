@@ -5,12 +5,12 @@ import { Calendar, Trophy, Users, ChevronRight, CheckCircle2, Code, Zap, Globe, 
 import { cn } from "@/lib/utils";
 
 type Member = {
-  fullName: "";
-  email: "";
-  phone: "";
-  college: "";
-  year: "";
-  department: "";
+  fullName: string;
+  email: string;
+  phone: string;
+  college: string;
+  year: string;
+  department: string;
 };
 
 const initialMemberState = {
