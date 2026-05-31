@@ -60,7 +60,7 @@ export default function Footer() {
                 whileHover={{ y: -5, scale: 1.1, backgroundColor: "#E1306C", borderColor: "#E1306C" }}
                 animate={{ y: [0, -3, 0] }}
                 transition={{ y: { duration: 2.2, repeat: Infinity, ease: "easeInOut", delay: 0.2 } }}
-                href="https://www.instagram.com/vernatech_llp?igsh=Y2wyazB6bTMzOWx0" target="_blank" rel="noopener noreferrer" 
+                href="https://www.instagram.com/vernatech.co?igsh=Y2wyazB6bTMzOWx0" target="_blank" rel="noopener noreferrer" 
                 className="group flex items-center justify-center w-10 h-10 rounded-full bg-primary border border-primary-light transition-all duration-300" 
                 aria-label="Instagram"
               >
