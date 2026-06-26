@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Trophy, Users, ChevronRight, CheckCircle2, Code, Zap, Globe, Rocket, Plus, Trash2, Upload, QrCode, CreditCard, Lightbulb, Cpu, Network } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+const HACKATHON_START = new Date("2026-06-27T10:00:00+05:30"); // June 27, 2026 at 10:00 AM IST
+
 function DistinguishedJudgeCard() {
   return (
     <motion.div
@@ -87,7 +89,7 @@ export default function BuildXClient() {
   useEffect(() => {
     setIsMounted(true);
 
-    const targetDate = new Date("2026-06-27T09:00:00+05:30"); // Target date: June 27, 2026 at 9:00 AM IST
+    const targetDate = HACKATHON_START;
 
     const calculateTimeLeft = () => {
       const difference = +targetDate - +new Date();
@@ -310,7 +312,7 @@ export default function BuildXClient() {
           >
             <div className="flex items-center gap-2 text-slate-300 bg-white/5 px-4 py-2 rounded-lg border border-white/10 backdrop-blur-sm">
               <Calendar className="text-accent" size={20} />
-              <span>27-28 June 2026</span>
+              <span>27-28 June 2026 · Starts 10:00 AM IST</span>
             </div>
             <div className="flex items-center gap-2 text-slate-300 bg-white/5 px-4 py-2 rounded-lg border border-white/10 backdrop-blur-sm">
               <Users className="text-accent" size={20} />
