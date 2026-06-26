@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageBody from "@/components/PageBody";
 import BuildXClient from "./BuildXClient";
 
 export const metadata = {
@@ -11,9 +12,9 @@ export default function BuildXPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-slate-950">
+      <PageBody className="min-h-screen bg-slate-950">
         <BuildXClient />
-      </main>
+      </PageBody>
       <Footer />
     </>
   );

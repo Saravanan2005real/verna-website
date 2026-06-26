@@ -7,12 +7,15 @@ import ServicesStrip from "@/components/ServicesStrip";
 import CtaBanner from "@/components/CtaBanner";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import HashScrollHandler from "@/components/HashScrollHandler";
+import PageBody from "@/components/PageBody";
 
 export default function Home() {
   return (
     <>
+      <HashScrollHandler />
       <Header />
-      <main>
+      <PageBody>
         <Hero />
         <Services />
         <WhyUs />
@@ -20,7 +23,7 @@ export default function Home() {
         <ServicesStrip />
         <CtaBanner />
         <Contact />
-      </main>
+      </PageBody>
       <Footer />
     </>
   );

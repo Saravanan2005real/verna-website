@@ -1,8 +1,58 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Trophy, Users, ChevronRight, CheckCircle2, Code, Zap, Globe, Rocket, Plus, Trash2, Upload, QrCode, CreditCard, Lightbulb, Cpu, Network, GraduationCap, Building2 } from "lucide-react";
+import { Calendar, Trophy, Users, ChevronRight, CheckCircle2, Code, Zap, Globe, Rocket, Plus, Trash2, Upload, QrCode, CreditCard, Lightbulb, Cpu, Network } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+function DistinguishedJudgeCard() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55 }}
+      className="w-full max-w-[40rem] mx-auto rounded-3xl bg-white/[0.03] border border-white/10 overflow-hidden hover:border-primary/25 transition-colors"
+    >
+      <div className="grid md:grid-cols-[12.5rem_1fr]">
+        {/* Left — Photo + profile */}
+        <div className="border-b md:border-b-0 md:border-r border-white/10 flex flex-col">
+          <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] md:aspect-square overflow-hidden bg-slate-800/60">
+            <Image
+              src="/team/girirajan.jpeg"
+              alt="Dr. Girirajan S"
+              fill
+              className="object-cover object-[center_12%] scale-[1.12]"
+              sizes="(max-width: 768px) 100vw, 200px"
+            />
+          </div>
+
+          <div className="p-6 md:py-8 md:px-7 flex flex-col gap-3">
+            <h3 className="text-xl font-bold text-white leading-tight">Dr. Girirajan S</h3>
+            <p className="text-sm font-semibold text-primary-light leading-snug">
+              Assistant Professor, SRM Institute of Science and Technology
+            </p>
+          </div>
+        </div>
+
+        {/* Right — Description only */}
+        <div className="p-6 md:py-8 md:px-8 lg:px-10 bg-slate-900/20 flex items-center min-w-0">
+          <div className="space-y-5">
+            <p className="text-base font-semibold text-white leading-relaxed">
+              Distinguished Jury of BuildX
+            </p>
+            <p className="text-sm sm:text-[0.9375rem] text-slate-300 leading-[1.75] text-justify">
+              Dr. Girirajan S is a faculty member in the Department of Computing Technologies at SRM IST,
+              Kattankulathur, and Co-convenor of Advanced Multi-lingual Computing Vertical with research interests
+              in Natural Language Processing, Machine Learning, Deep Learning, Generative AI, and Agentic AI. As a
+              Distinguished Jury Member, he brings strong academic and research expertise to evaluate projects based
+              on innovation, technical depth, implementation quality, and their potential for real-world impact.
+            </p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 type Member = {
   fullName: string;
@@ -396,51 +446,30 @@ export default function BuildXClient() {
           </div>
         </div>
 
-        {/* Jury Panel & Networking Section */}
+        {/* Jury Panel Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-24 relative rounded-3xl overflow-hidden border border-white/5 bg-slate-900/30 p-8 md:p-12 backdrop-blur-sm max-w-4xl mx-auto"
+          className="mb-24 relative"
         >
-          {/* Subtle glow background */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
 
-          <div className="relative z-10 space-y-8 text-center max-w-3xl mx-auto">
-            <div className="flex flex-col items-center space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent-light text-sm font-semibold">
-                <Network size={16} />
-                <span>Expert Panels</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-                Distinguished Academic & Industry Jury
-              </h2>
-              <p className="text-slate-300 leading-relaxed text-lg max-w-2xl">
-                Your projects will be evaluated by recognized experts representing both top tier academic institutions and leading technology companies.
-              </p>
+          <div className="relative z-10 text-center mb-14">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent-light text-sm font-semibold mb-4">
+              <Network size={16} />
+              <span>Expert Panels</span>
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 flex items-start gap-4 hover:border-primary/20 transition-all hover:bg-slate-900/40">
-                <div className="p-3 rounded-xl bg-primary/20 text-primary-light shrink-0">
-                  <GraduationCap size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-white text-lg mb-1">Academic Wisdom</h4>
-                  <p className="text-sm text-slate-400 leading-relaxed">Receive constructive suggestions on research methodologies, algorithmic rigor, and foundational theories.</p>
-                </div>
-              </div>
-              
-              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 flex items-start gap-4 hover:border-primary/20 transition-all hover:bg-slate-900/40">
-                <div className="p-3 rounded-xl bg-accent/20 text-accent-light shrink-0">
-                  <Building2 size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-white text-lg mb-1">Industry Standards</h4>
-                  <p className="text-sm text-slate-400 leading-relaxed">Get insights on real-world product deployment, scalability patterns, code efficiency, and business viability.</p>
-                </div>
-              </div>
-            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+              Distinguished Judge
+            </h2>
+            <p className="text-slate-300 leading-relaxed text-lg max-w-3xl mx-auto">
+              Final submissions are evaluated by a distinguished academic expert who brings scholarly rigor and industry insight to the grand finale.
+            </p>
+          </div>
+
+          <div className="relative z-10 flex justify-center px-4 sm:px-6 pt-2 pb-4">
+            <DistinguishedJudgeCard />
           </div>
         </motion.div>
 

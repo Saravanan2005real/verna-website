@@ -1,10 +1,14 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useEntrance } from "@/components/EntranceProvider";
+import HomeSectionLink from "@/components/HomeSectionLink";
+import HomeLogoLink from "@/components/HomeLogoLink";
 
 const navLinks = [
   { name: "Home", href: "/#home" },
@@ -15,9 +19,23 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const { onHeaderComplete } = useEntrance();
+  const hasAnnouncedComplete = useRef(false);
+
+  const handleHeaderDropComplete = () => {
+    if (hasAnnouncedComplete.current) return;
+    hasAnnouncedComplete.current = true;
+    onHeaderComplete();
+  };
+
+  useEffect(() => {
+    hasAnnouncedComplete.current = false;
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,9 +48,11 @@ export default function Header() {
   return (
     <>
       <motion.header
-        initial={{ y: -100 }}
+        key={pathname}
+        initial={{ y: "-100%" }}
         animate={{ y: 0 }}
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        onAnimationComplete={handleHeaderDropComplete}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-6 px-4 sm:px-8",
           isScrolled ? "pt-4" : "pt-6"
@@ -47,18 +67,18 @@ export default function Header() {
           )}
         >
           {/* Logo */}
-          <Link href="#home" className="relative z-50">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 400, damping: 17 }} className="bg-white px-3 py-1 rounded-full shadow-sm">
+          <HomeLogoLink className="relative z-50 block shrink-0">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 400, damping: 17 }} className="bg-white px-3 py-1 rounded-full shadow-sm cursor-pointer">
               <Image 
                 src="/logo.png" 
                 alt="VernaTech Logo" 
                 width={200} 
                 height={50} 
-                className="h-8 sm:h-10 w-auto object-contain"
+                className="h-8 sm:h-10 w-auto object-contain pointer-events-none select-none"
                 priority
               />
             </motion.div>
-          </Link>
+          </HomeLogoLink>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-2 relative">
@@ -84,7 +104,7 @@ export default function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center">
-            <Link href="#contact">
+            <HomeSectionLink section="contact">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -96,7 +116,7 @@ export default function Header() {
                   <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </span>
               </motion.div>
-            </Link>
+            </HomeSectionLink>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -155,13 +175,13 @@ export default function Header() {
                 transition={{ delay: 0.4 }}
                 className="mt-auto pt-8"
               >
-                <Link
-                  href="#contact"
+                <HomeSectionLink
+                  section="contact"
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center justify-center gap-2 w-full py-5 bg-primary text-white rounded-full font-bold text-xl shadow-lg shadow-primary/30 hover:bg-primary-dark transition-all"
                 >
                   Contact Us
-                </Link>
+                </HomeSectionLink>
               </motion.div>
             </motion.div>
           </motion.div>

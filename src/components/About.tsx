@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import CountUp from "@/components/CountUp";
 
 export default function About() {
   return (
@@ -77,7 +78,7 @@ export default function About() {
                   transition={{ y: { duration: 5, repeat: Infinity, ease: "easeInOut" } }}
                   className="bg-white border border-slate-100 rounded-3xl p-8 aspect-square flex flex-col justify-center shadow-[0_8px_30px_rgba(26,78,149,0.06)] hover:border-primary/30 transition-colors"
                 >
-                  <span className="text-5xl font-bold text-primary mb-2">50+</span>
+                  <CountUp end={50} suffix="+" className="text-5xl font-bold text-primary mb-2" />
                   <span className="text-slate-500 font-medium">Projects Delivered</span>
                 </motion.div>
                 
@@ -92,7 +93,7 @@ export default function About() {
                     transition={{ duration: 4, repeat: Infinity }}
                     className="absolute -top-10 -right-10 w-32 h-32 bg-white rounded-full blur-2xl"
                   />
-                  <span className="relative z-10 text-5xl font-bold mb-2">100%</span>
+                  <CountUp end={100} suffix="%" className="relative z-10 text-5xl font-bold mb-2" />
                   <span className="relative z-10 text-blue-100 font-medium">Client Satisfaction</span>
                 </motion.div>
               </div>
@@ -119,7 +120,7 @@ export default function About() {
                   transition={{ y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 } }}
                   className="bg-white border border-slate-100 rounded-3xl p-8 aspect-square flex flex-col justify-center shadow-[0_8px_30px_rgba(26,78,149,0.06)] hover:border-primary/30 transition-colors"
                 >
-                  <span className="text-5xl font-bold text-primary mb-2">10+</span>
+                  <CountUp end={10} suffix="+" className="text-5xl font-bold text-primary mb-2" />
                   <span className="text-slate-500 font-medium">Expert Engineers</span>
                 </motion.div>
               </div>

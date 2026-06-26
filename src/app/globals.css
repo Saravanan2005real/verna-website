@@ -10,6 +10,18 @@
   --color-accent-muted: rgba(35, 151, 184, 0.12);
   --color-off-white: #F8FAFC;
 
+  /* Social brand colors */
+  --color-brand-linkedin: #0A66C2;
+  --color-brand-whatsapp: #25D366;
+  --gradient-brand-instagram: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+
   /* Animations */
   --animate-gradient: gradient 8s linear infinite;
 
@@ -56,3 +68,108 @@
 }
 
 .bg-300-percent { background-size: 300% 300%; }
+
+@layer components {
+  /* Footer / dark circular icon buttons */
+  .social-icon-btn {
+    @apply flex items-center justify-center w-10 h-10 rounded-full bg-primary border border-primary-light transition-all duration-300;
+  }
+
+  .social-icon-btn svg {
+    @apply text-blue-100 transition-colors duration-300;
+  }
+
+  .social-icon-btn--linkedin:hover {
+    background-color: var(--color-brand-linkedin);
+    border-color: var(--color-brand-linkedin);
+  }
+
+  .social-icon-btn--linkedin:hover svg {
+    color: #ffffff;
+  }
+
+  .social-icon-btn--instagram:hover {
+    background: var(--gradient-brand-instagram);
+    border-color: transparent;
+  }
+
+  .social-icon-btn--instagram:hover svg {
+    color: #ffffff;
+  }
+
+  .social-icon-btn--whatsapp:hover {
+    background-color: var(--color-brand-whatsapp);
+    border-color: var(--color-brand-whatsapp);
+  }
+
+  .social-icon-btn--whatsapp:hover svg {
+    color: #ffffff;
+  }
+
+  /* Contact / light card buttons */
+  .social-card-btn {
+    @apply relative z-0 flex items-center justify-center gap-3 px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 text-slate-600 shadow-sm overflow-hidden;
+    transition:
+      transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .social-card-btn:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 16px 32px rgba(26, 78, 149, 0.18);
+  }
+
+  .social-card-btn:active {
+    transform: translateY(-2px) scale(1.02);
+    transition-duration: 0.12s;
+  }
+
+  .social-card-btn svg {
+    @apply shrink-0;
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .social-card-btn:hover svg {
+    transform: scale(1.1);
+  }
+
+  .social-card-btn--linkedin:hover {
+    color: #ffffff;
+    background-color: var(--color-brand-linkedin);
+    border-color: var(--color-brand-linkedin);
+  }
+
+  .social-card-btn--instagram::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--gradient-brand-instagram);
+    opacity: 0;
+    transition: opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .social-card-btn--instagram:hover {
+    color: #ffffff;
+    border-color: transparent;
+  }
+
+  .social-card-btn--instagram:hover::before {
+    opacity: 1;
+  }
+
+  .social-card-btn--whatsapp:hover {
+    color: #ffffff;
+    background-color: var(--color-brand-whatsapp);
+    border-color: var(--color-brand-whatsapp);
+  }
+
+  /* Inline text links (e.g. team profiles) */
+  .social-text-link--linkedin:hover {
+    color: var(--color-brand-linkedin);
+  }
+}

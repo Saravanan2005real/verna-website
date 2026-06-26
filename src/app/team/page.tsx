@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageBody from "@/components/PageBody";
 import TeamPageClient from "./TeamPageClient";
 
 export const metadata = {
@@ -11,9 +12,9 @@ export default function TeamPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-slate-50 pt-24">
+      <PageBody className="min-h-screen bg-slate-50 pt-24">
         <TeamPageClient />
-      </main>
+      </PageBody>
       <Footer />
     </>
   );

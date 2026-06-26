@@ -2,8 +2,11 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useEntrance } from "@/components/EntranceProvider";
 
 export default function Hero() {
+  const { headerReady } = useEntrance();
+
   return (
     <section className="relative min-h-[100vh] flex items-center justify-center bg-slate-50 overflow-hidden pt-20" id="home">
       
@@ -11,7 +14,7 @@ export default function Hero() {
       <motion.div 
         animate={{ 
           scale: [1, 1.2, 1],
-          opacity: [0.4, 0.7, 0.4],
+          opacity: headerReady ? [0.4, 0.7, 0.4] : 0,
           rotate: [0, 90, 0]
         }}
         transition={{ 
@@ -27,12 +30,12 @@ export default function Hero() {
           
           <motion.div
             initial="hidden"
-            animate="visible"
+            animate={headerReady ? "visible" : "hidden"}
             variants={{
               hidden: { opacity: 0 },
               visible: {
                 opacity: 1,
-                transition: { staggerChildren: 0.2, delayChildren: 0.1 }
+                transition: { staggerChildren: 0.18, delayChildren: 0.12 }
               }
             }}
             className="mb-8"
@@ -53,8 +56,8 @@ export default function Hero() {
           
           <motion.p 
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
+            animate={headerReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.45, type: "spring" }}
             className="text-lg sm:text-xl md:text-2xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed font-light"
           >
             Expert IT Services, Custom Software Solutions, and Mentorship to accelerate your digital transformation and scale your ideas.
@@ -62,8 +65,8 @@ export default function Hero() {
           
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.6, type: "spring" }}
+            animate={headerReady ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.5, delay: 0.65, type: "spring" }}
             className="flex flex-col sm:flex-row items-center justify-center gap-5 w-full sm:w-auto"
           >
             <Link href="#services" className="w-full sm:w-auto">
