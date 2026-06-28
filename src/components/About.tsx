@@ -10,7 +10,7 @@ export default function About() {
       <motion.div 
         animate={{ backgroundPosition: ["0px 0px", "40px 40px"] }}
         transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(26,78,149,1)_1px,transparent_1px),linear-gradient(90deg,rgba(26,78,149,1)_1px,transparent_1px)] [background-size:40px_40px] pointer-events-none" 
+        className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(0,53,244,1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,53,244,1)_1px,transparent_1px)] [background-size:40px_40px] pointer-events-none" 
       />
 
       <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-8 relative z-10">
@@ -76,7 +76,7 @@ export default function About() {
                   whileHover={{ scale: 1.05, y: -5 }}
                   animate={{ y: [0, -8, 0] }}
                   transition={{ y: { duration: 5, repeat: Infinity, ease: "easeInOut" } }}
-                  className="bg-white border border-slate-100 rounded-3xl p-8 aspect-square flex flex-col justify-center shadow-[0_8px_30px_rgba(26,78,149,0.06)] hover:border-primary/30 transition-colors"
+                  className="bg-white border border-slate-100 rounded-3xl p-8 aspect-square flex flex-col justify-center shadow-[0_8px_30px_rgba(0,53,244,0.06)] hover:border-primary/30 transition-colors"
                 >
                   <CountUp end={50} suffix="+" className="text-5xl font-bold text-primary mb-2" />
                   <span className="text-slate-500 font-medium">Projects Delivered</span>
@@ -103,7 +103,7 @@ export default function About() {
                   whileHover={{ scale: 1.05, y: -5 }}
                   animate={{ y: [0, -6, 0] }}
                   transition={{ y: { duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1 } }}
-                  className="relative bg-gradient-to-br from-accent to-primary text-white rounded-3xl p-8 aspect-square flex flex-col justify-center shadow-[0_15px_30px_rgba(35,151,184,0.2)] overflow-hidden group"
+                  className="relative bg-gradient-to-br from-accent to-primary text-white rounded-3xl p-8 aspect-square flex flex-col justify-center shadow-[0_15px_30px_rgba(0,53,244,0.2)] overflow-hidden group"
                 >
                   <motion.div 
                     animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.5, 0.2] }}
@@ -118,7 +118,7 @@ export default function About() {
                   whileHover={{ scale: 1.05, y: -5 }}
                   animate={{ y: [0, 6, 0] }}
                   transition={{ y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 } }}
-                  className="bg-white border border-slate-100 rounded-3xl p-8 aspect-square flex flex-col justify-center shadow-[0_8px_30px_rgba(26,78,149,0.06)] hover:border-primary/30 transition-colors"
+                  className="bg-white border border-slate-100 rounded-3xl p-8 aspect-square flex flex-col justify-center shadow-[0_8px_30px_rgba(0,53,244,0.06)] hover:border-primary/30 transition-colors"
                 >
                   <CountUp end={10} suffix="+" className="text-5xl font-bold text-primary mb-2" />
                   <span className="text-slate-500 font-medium">Expert Engineers</span>

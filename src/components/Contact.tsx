@@ -4,21 +4,22 @@ import { Mail, Phone } from "lucide-react";
 
 export default function Contact() {
   return (
-    <section className="py-24 sm:py-32 bg-slate-50 relative overflow-hidden scroll-mt-24" id="contact">
+    <section className="py-24 sm:py-32 bg-slate-50 relative overflow-hidden scroll-mt-28" id="contact">
       {/* Moving Light Tech grid */}
       <motion.div 
         animate={{ backgroundPosition: ["0px 0px", "40px 40px"] }}
         transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 bg-[linear-gradient(rgba(26,78,149,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(26,78,149,0.03)_1px,transparent_1px)] bg-[length:40px_40px] pointer-events-none" 
+        className="absolute inset-0 bg-[linear-gradient(rgba(0,53,244,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,53,244,0.03)_1px,transparent_1px)] bg-[length:40px_40px] pointer-events-none" 
       />
 
       <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-8 relative z-10">
         <motion.div 
+          id="contact-start"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="text-center max-w-2xl mx-auto mb-16 scroll-mt-32"
         >
           <motion.span 
             initial={{ scale: 0 }}
@@ -43,8 +44,8 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ type: "spring", stiffness: 80, damping: 20 }}
-          whileHover={{ boxShadow: "0px 20px 60px rgba(26,78,149,0.12)" }}
-          className="max-w-4xl mx-auto bg-white p-10 sm:p-14 rounded-[2.5rem] shadow-[0_8px_40px_rgba(26,78,149,0.08)] border border-slate-100 flex flex-col md:flex-row gap-12 justify-between items-center transition-all duration-500"
+          whileHover={{ boxShadow: "0px 20px 60px rgba(0,53,244,0.12)" }}
+          className="max-w-4xl mx-auto bg-white p-10 sm:p-14 rounded-[2.5rem] shadow-[0_8px_40px_rgba(0,53,244,0.08)] border border-slate-100 flex flex-col md:flex-row gap-12 justify-between items-center transition-all duration-500"
         >
           
           <div className="flex-1 w-full space-y-8">
@@ -55,7 +56,7 @@ export default function Contact() {
               <motion.div 
                 animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white group-hover:shadow-[0_8px_20px_rgba(26,78,149,0.3)] transition-all duration-300 border border-primary/10"
+                className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white group-hover:shadow-[0_8px_20px_rgba(0,53,244,0.3)] transition-all duration-300 border border-primary/10"
               >
                 <Mail size={24} className="group-hover:rotate-12 transition-transform" />
               </motion.div>
@@ -74,7 +75,7 @@ export default function Contact() {
               <motion.div 
                 animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white group-hover:shadow-[0_8px_20px_rgba(35,151,184,0.3)] transition-all duration-300 border border-accent/10"
+                className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white group-hover:shadow-[0_8px_20px_rgba(0,53,244,0.3)] transition-all duration-300 border border-accent/10"
               >
                 <Phone size={24} className="group-hover:-rotate-12 transition-transform" />
               </motion.div>

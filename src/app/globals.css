@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Colors */
-  --color-primary: #1A4E95;
-  --color-primary-dark: #133a6f;
-  --color-primary-light: #2a6bb8;
-  --color-accent: #2397B8;
-  --color-accent-light: #2eb5d4;
-  --color-accent-muted: rgba(35, 151, 184, 0.12);
+  /* Colors — Vernatech brand blue */
+  --color-primary: #0035f4;
+  --color-primary-dark: #0029c2;
+  --color-primary-light: #4d6fff;
+  --color-accent: #1a52ff;
+  --color-accent-light: #668cff;
+  --color-accent-muted: rgba(0, 53, 244, 0.12);
   --color-off-white: #F8FAFC;
 
   /* Social brand colors */
@@ -37,9 +37,9 @@
   --font-body: var(--font-body);
 
   /* Shadows for light mode */
-  --shadow-sm: 0 2px 8px rgba(26, 78, 149, 0.06);
-  --shadow-md: 0 8px 24px rgba(26, 78, 149, 0.1);
-  --shadow-lg: 0 20px 48px rgba(26, 78, 149, 0.12);
+  --shadow-sm: 0 2px 8px rgba(0, 53, 244, 0.06);
+  --shadow-md: 0 8px 24px rgba(0, 53, 244, 0.1);
+  --shadow-lg: 0 20px 48px rgba(0, 53, 244, 0.12);
 }
 
 @layer base {
@@ -60,8 +60,8 @@
     inset: 0;
     z-index: -1;
     background-image:
-      linear-gradient(rgba(26, 78, 149, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(26, 78, 149, 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(0, 53, 244, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 53, 244, 0.03) 1px, transparent 1px);
     background-size: 60px 60px;
     pointer-events: none;
   }
@@ -120,7 +120,7 @@
 
   .social-card-btn:hover {
     transform: translateY(-6px) scale(1.05);
-    box-shadow: 0 16px 32px rgba(26, 78, 149, 0.18);
+    box-shadow: 0 16px 32px rgba(0, 53, 244, 0.18);
   }
 
   .social-card-btn:active {
@@ -169,7 +169,26 @@
   }
 
   /* Inline text links (e.g. team profiles) */
+  .social-text-link--linkedin {
+    @apply inline-flex w-fit self-start items-center gap-1.5 text-xs font-bold mt-auto pl-2.5 pr-2 py-1.5 rounded-lg;
+    color: rgb(148 163 184);
+    transition:
+      transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
   .social-text-link--linkedin:hover {
-    color: var(--color-brand-linkedin);
+    color: #ffffff;
+    background-color: var(--color-brand-linkedin);
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(10, 102, 194, 0.28);
+  }
+
+  .social-text-link--linkedin:active {
+    transform: translateY(-2px);
+    transition-duration: 0.12s;
   }
 }

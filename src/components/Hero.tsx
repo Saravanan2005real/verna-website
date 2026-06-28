@@ -3,6 +3,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useEntrance } from "@/components/EntranceProvider";
+import HomeSectionLink from "@/components/HomeSectionLink";
 
 export default function Hero() {
   const { headerReady } = useEntrance();
@@ -71,13 +72,13 @@ export default function Hero() {
           >
             <Link href="#services" className="w-full sm:w-auto">
               <motion.button 
-                whileHover={{ scale: 1.05, y: -4, boxShadow: "0px 15px 40px rgba(26,78,149,0.4)" }}
+                whileHover={{ scale: 1.05, y: -4, boxShadow: "0px 15px 40px rgba(0,53,244,0.4)" }}
                 whileTap={{ scale: 0.95 }}
                 animate={{ y: [0, -5, 0] }}
                 transition={{ 
                   y: { repeat: Infinity, duration: 3, ease: "easeInOut" }
                 }}
-                className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent text-white rounded-full font-bold text-[1.05rem] shadow-[0_8px_30px_rgba(26,78,149,0.3)] border border-primary/20 transition-all"
+                className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent text-white rounded-full font-bold text-[1.05rem] shadow-[0_8px_30px_rgba(0,53,244,0.3)] border border-primary/20 transition-all"
               >
                 Explore Our Services
                 <motion.div animate={{ x: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}>
@@ -85,7 +86,7 @@ export default function Hero() {
                 </motion.div>
               </motion.button>
             </Link>
-            <Link href="#contact" className="w-full sm:w-auto">
+            <HomeSectionLink section="contact" className="w-full sm:w-auto">
               <motion.button 
                 whileHover={{ scale: 1.05, y: -4, backgroundColor: "#f8fafc" }}
                 whileTap={{ scale: 0.95 }}
@@ -93,7 +94,7 @@ export default function Hero() {
               >
                 Contact Us
               </motion.button>
-            </Link>
+            </HomeSectionLink>
           </motion.div>
         </div>
       </div>

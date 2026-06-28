@@ -6,7 +6,7 @@ import {
   consumePendingHomeSection,
   getHomeSectionScrollDelay,
   isHomeSection,
-  scrollToHomeSection,
+  scrollToHomeSectionWithAlign,
 } from "@/lib/navigation";
 import { useEntrance } from "@/components/EntranceProvider";
 
@@ -20,24 +20,18 @@ export default function HashScrollHandler() {
     const pending = consumePendingHomeSection();
     if (pending) {
       const delay = getHomeSectionScrollDelay(pending);
-      let alignTimer: number | undefined;
-
       const timer = window.setTimeout(() => {
-        scrollToHomeSection(pending);
-        alignTimer = window.setTimeout(() => scrollToHomeSection(pending, "auto"), 120);
+        scrollToHomeSectionWithAlign(pending);
       }, delay);
 
-      return () => {
-        window.clearTimeout(timer);
-        if (alignTimer !== undefined) window.clearTimeout(alignTimer);
-      };
+      return () => window.clearTimeout(timer);
     }
 
     const hash = window.location.hash.replace("#", "");
     if (!hash || !isHomeSection(hash)) return;
 
     const delay = getHomeSectionScrollDelay(hash);
-    const timer = window.setTimeout(() => scrollToHomeSection(hash), delay);
+    const timer = window.setTimeout(() => scrollToHomeSectionWithAlign(hash), delay);
     return () => window.clearTimeout(timer);
   }, [pathname, headerReady]);
 

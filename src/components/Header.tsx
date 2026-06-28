@@ -15,7 +15,6 @@ const navLinks = [
   { name: "Services", href: "/#services" },
   { name: "About Us", href: "/#about" },
   { name: "Our Team", href: "/team" },
-  { name: "BuildX", href: "/buildx" },
 ];
 
 export default function Header() {
@@ -62,21 +61,32 @@ export default function Header() {
           className={cn(
             "max-w-[1200px] mx-auto flex items-center justify-between transition-all duration-500 rounded-full",
             isScrolled 
-              ? "bg-white/90 backdrop-blur-md shadow-[0_8px_30px_rgba(26,78,149,0.12)] border border-slate-200 px-6 py-3" 
+              ? "bg-white/90 backdrop-blur-md shadow-[0_8px_30px_rgba(0,53,244,0.12)] border border-slate-200 px-6 py-3" 
               : "bg-white/70 backdrop-blur-sm border border-slate-200/50 shadow-sm px-6 py-4"
           )}
         >
           {/* Logo */}
           <HomeLogoLink className="relative z-50 block shrink-0">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 400, damping: 17 }} className="bg-white px-3 py-1 rounded-full shadow-sm cursor-pointer">
-              <Image 
-                src="/logo.png" 
-                alt="VernaTech Logo" 
-                width={200} 
-                height={50} 
-                className="h-8 sm:h-10 w-auto object-contain pointer-events-none select-none"
-                priority
-              />
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              className="flex flex-col items-start gap-0.5 cursor-pointer"
+            >
+              <div className="rounded-full overflow-hidden inline-flex leading-none">
+                <Image
+                  src="/vernatech-logo.png"
+                  alt="VernaTech Logo"
+                  width={320}
+                  height={80}
+                  className="h-10 sm:h-11 w-auto object-contain pointer-events-none select-none rounded-full"
+                  priority
+                  unoptimized
+                />
+              </div>
+              <span className="font-body text-[7px] sm:text-[8px] font-semibold text-primary tracking-wide leading-none whitespace-nowrap pl-0.5">
+                Built for Your Future
+              </span>
             </motion.div>
           </HomeLogoLink>
 

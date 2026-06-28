@@ -1,6 +1,6 @@
 "use client";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import HomeSectionLink from "@/components/HomeSectionLink";
 
 export default function CtaBanner() {
   return (
@@ -24,12 +24,12 @@ export default function CtaBanner() {
               Ready to transform your ideas into reality? Let's collaborate and build something extraordinary together.
             </p>
             
-            <Link 
-              href="#contact" 
+            <HomeSectionLink 
+              section="contact"
               className="inline-flex items-center justify-center px-10 py-5 font-body text-[1rem] font-bold tracking-wide rounded-full bg-white text-slate-900 shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] hover:scale-105 hover:bg-slate-50 transition-all duration-300"
             >
               Get in Touch Today
-            </Link>
+            </HomeSectionLink>
           </div>
         </motion.div>
       </div>

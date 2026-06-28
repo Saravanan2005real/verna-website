@@ -27,10 +27,8 @@ export default function HomeSectionLink({
     e.preventDefault();
 
     if (pathname === "/") {
-      scrollToHomeSection(section);
-      if (window.location.hash) {
-        window.history.replaceState(null, "", homeSectionPath(section));
-      }
+      window.history.replaceState(null, "", homeSectionPath(section));
+      scrollToHomeSection(section, "smooth");
       return;
     }
 

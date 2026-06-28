@@ -16,7 +16,7 @@ const itemVariants: Variants = {
 
 export default function WhyUs() {
   return (
-    <section className="relative bg-gradient-to-br from-[#0c264a] via-primary-dark to-primary text-white overflow-hidden py-24 sm:py-32" id="why-us">
+    <section className="relative bg-gradient-to-br from-[#001454] via-primary-dark to-primary text-white overflow-hidden py-24 sm:py-32" id="why-us">
       {/* Moving Background Pattern */}
       <motion.div 
         animate={{ backgroundPosition: ["0px 0px", "64px 64px"] }}
@@ -92,7 +92,7 @@ export default function WhyUs() {
               <motion.div 
                 animate={{ x: [0, 15, 0], y: [0, -10, 0] }}
                 transition={{ duration: 8 + i, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-30 group-hover:scale-125 transition-all duration-700 font-heading text-8xl font-black text-accent pointer-events-none -mr-4 -mt-4"
+                className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-25 group-hover:scale-125 transition-all duration-700 font-heading text-8xl font-black text-white pointer-events-none -mr-4 -mt-4"
               >
                 {item.num}
               </motion.div>
@@ -101,7 +101,7 @@ export default function WhyUs() {
                 <motion.div 
                   initial={{ rotate: -5 }}
                   whileInView={{ rotate: 0 }}
-                  className="font-heading text-3xl font-bold text-accent-light mb-6 transition-transform duration-500 group-hover:-translate-y-2 group-hover:rotate-6"
+                  className="font-heading text-3xl font-bold text-white mb-6 transition-transform duration-500 group-hover:-translate-y-2 group-hover:rotate-6"
                 >
                   {item.num}.
                 </motion.div>

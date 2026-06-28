@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { Code2, Smartphone, Lightbulb, GraduationCap, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import HomeSectionLink from "@/components/HomeSectionLink";
 
 const services = [
   {
@@ -105,10 +105,10 @@ export default function Services() {
                 whileHover={{ 
                   y: -10,
                   scale: 1.02,
-                  boxShadow: "0px 20px 40px rgba(26,78,149,0.12)",
-                  borderColor: "rgba(26,78,149,0.2)"
+                  boxShadow: "0px 20px 40px rgba(0,53,244,0.12)",
+                  borderColor: "rgba(0,53,244,0.2)"
                 }}
-                className="group relative bg-white backdrop-blur-md border border-slate-100 shadow-[0_8px_30px_rgba(26,78,149,0.04)] rounded-[2rem] p-8 sm:p-10 transition-colors duration-500 overflow-hidden"
+                className="group relative bg-white backdrop-blur-md border border-slate-100 shadow-[0_8px_30px_rgba(0,53,244,0.04)] rounded-[2rem] p-8 sm:p-10 transition-colors duration-500 overflow-hidden"
               >
                 {/* Subtle Hover Glow behind card content */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
@@ -130,15 +130,15 @@ export default function Services() {
                       {service.desc}
                     </p>
                     
-                    <Link 
-                      href="#contact" 
-                      className="inline-flex items-center gap-2 font-semibold text-primary text-sm tracking-wide group/link relative"
+                    <HomeSectionLink 
+                      section="contact"
+                      className="relative z-10 inline-flex items-center gap-2 font-semibold text-primary text-sm tracking-wide group/link"
                     >
                       <motion.span whileHover={{ x: 5 }} className="flex items-center gap-2">
                         Learn more 
                         <ArrowRight size={16} />
                       </motion.span>
-                    </Link>
+                    </HomeSectionLink>
                   </div>
                 </div>
               </motion.div>
