@@ -71,20 +71,18 @@ export default function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="flex flex-col items-start gap-0.5 cursor-pointer"
+              className="inline-flex h-12 sm:h-14 flex-col items-center justify-center cursor-pointer"
             >
-              <div className="rounded-full overflow-hidden inline-flex leading-none">
-                <Image
-                  src="/vernatech-logo.png"
-                  alt="VernaTech Logo"
-                  width={320}
-                  height={80}
-                  className="h-10 sm:h-11 w-auto object-contain pointer-events-none select-none rounded-full"
-                  priority
-                  unoptimized
-                />
-              </div>
-              <span className="font-body text-[7px] sm:text-[8px] font-semibold text-primary tracking-wide leading-none whitespace-nowrap pl-0.5">
+              <Image
+                src="/vernatech-logo.png"
+                alt="VernaTech Logo"
+                width={360}
+                height={112}
+                className="block h-10 sm:h-11 w-auto object-contain pointer-events-none select-none"
+                priority
+                unoptimized
+              />
+              <span className="block w-full text-center font-body text-[10px] sm:text-[11px] font-semibold text-primary tracking-tight leading-none mt-0.5">
                 Built for Your Future
               </span>
             </motion.div>
